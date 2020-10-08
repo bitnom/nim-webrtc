@@ -3,7 +3,7 @@
 version = "0.1.0"
 author = "TensorTom"
 description = "WebRTC libdatachannel binding for Nim."
-license = "MIT"
+license = "LGPL3"
 srcDir = "src"
 
 var
