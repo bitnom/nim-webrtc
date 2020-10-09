@@ -11,6 +11,9 @@ From their docs we can see build instructions:
 $ git clone https://github.com/paullouisageneau/libdatachannel.git
 $ cd libdatachannel
 $ git submodule update --init --recursive
+$ cmake -B build -DUSE_GNUTLS=1 -DUSE_NICE=0
+$ cd build
+$ make -j2
 ```
 
 I defined `webrtc.nimble` & `src/webrtc.nim`. Then, I try a test run via:
