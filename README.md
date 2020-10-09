@@ -249,4 +249,11 @@ Makefile:148: recipe for target 'all' failed
 make: *** [all] Error 2 [AssertionError]
 ```
 
-It says these thing not exist but they do exist. What to try next?
+Looks like the current problem is:
+
+```
+cc1: error: -Werror=format-truncation: no option -Wformat-truncation
+cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
+```
+
+whatever that means. Searching...
