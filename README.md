@@ -25,13 +25,12 @@ nim c src/webrtc.nim
 but it doesn't work. Here's the full output:
 
 ```
-❯ nim c src/webrtc.nim
+❯ nim c -d:rtcGit -d:rtcStatic src/webrtc.nim
 Hint: used config file '/home/user/.nimble/config/nim.cfg' [Conf]
 Hint: system [Processing]
 Hint: widestrs [Processing]
 Hint: io [Processing]
 Hint: webrtc [Processing]
-Hint: build [Processing]
 Hint: os [Processing]
 Hint: strutils [Processing]
 Hint: parseutils [Processing]
@@ -46,6 +45,8 @@ Hint: posix [Processing]
 Hint: times [Processing]
 Hint: options [Processing]
 Hint: typetraits [Processing]
+Hint: strformat [Processing]
+Hint: build [Processing]
 Hint: misc [Processing]
 Hint: globals [Processing]
 Hint: tables [Processing]
@@ -59,7 +60,6 @@ Hint: osproc [Processing]
 Hint: strtabs [Processing]
 Hint: cpuinfo [Processing]
 Hint: sets [Processing]
-Hint: strformat [Processing]
 Hint: compilesettings [Processing]
 Hint: shell [Processing]
 Hint: ccompiler [Processing]
@@ -69,8 +69,11 @@ Hint: jbb [Processing]
 Hint: getheader [Processing]
 Hint: cimport [Processing]
 Hint: paths [Processing]
-# Setting up Git repo: https://github.com/paullouisageneau/libdatachannel.git
+# Setting up Git repo: https://github.com/paullouisageneau/libdatachannel
 # Checking out master
+Shell ret 1: 0
+Error in prebuild cmd 1 0
+Error in prebuild cmd 2 0
 # Running cmake .. -G 'Unix Makefiles' -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DUSE_GNUTLS=1 -DUSE_NICE=0
 #   Path: /home/user/.cache/nim/nimterop/libdatachannel/buildcache
 
@@ -155,108 +158,101 @@ stack trace: (most recent call last)
 /home/user/.nimble/lib/system/assertions.nim(29, 26) failedAssertImpl
 /home/user/.nimble/lib/system/assertions.nim(22, 11) raiseAssert
 /home/user/.nimble/lib/system/fatal.nim(49, 5) sysFatal
-/home/user/Projects/webrtc/src/webrtc.nim(20, 10) template/generic instantiation of `getHeader` from here
+/home/user/Projects/webrtc/src/webrtc.nim(36, 10) template/generic instantiation of `getHeader` from here
 /home/user/.nimble/lib/system/fatal.nim(49, 5) Error: unhandled exception: /home/user/.nimble/pkgs/nimterop-0.6.12/nimterop/build/shell.nim(90, 7) `not die` Command failed: 2
 cmd: cd /home/user/.cache/nim/nimterop/libdatachannel/buildcache && make -j 12
 result:
 Scanning dependencies of target juice-static
-[  0%] Building C object deps/libjuice/CMakeFiles/juice-static.dir/src/addr.c.o
+[  1%] Building C object deps/libjuice/CMakeFiles/juice-static.dir/src/addr.c.o
 [  1%] Building C object deps/libjuice/CMakeFiles/juice-static.dir/src/agent.c.o
+[  1%] Building C object deps/libjuice/CMakeFiles/juice-static.dir/src/hmac.c.o
 [  3%] Building C object deps/libjuice/CMakeFiles/juice-static.dir/src/crc32.c.o
-[  3%] Building C object deps/libjuice/CMakeFiles/juice-static.dir/src/hmac.c.o
-[  5%] Building C object deps/libjuice/CMakeFiles/juice-static.dir/src/juice.c.o
-[  7%] Building C object deps/libjuice/CMakeFiles/juice-static.dir/src/ice.c.o
-[  7%] Building C object deps/libjuice/CMakeFiles/juice-static.dir/src/log.c.o
+[  5%] Building C object deps/libjuice/CMakeFiles/juice-static.dir/src/ice.c.o
+[  5%] Building C object deps/libjuice/CMakeFiles/juice-static.dir/src/log.c.o
+[  7%] Building C object deps/libjuice/CMakeFiles/juice-static.dir/src/juice.c.o
 [  7%] Building C object deps/libjuice/CMakeFiles/juice-static.dir/src/stun.c.o
 [  8%] Building C object deps/libjuice/CMakeFiles/juice-static.dir/src/random.c.o
 [ 10%] Building C object deps/libjuice/CMakeFiles/juice-static.dir/src/udp.c.o
 [ 12%] Linking C static library libjuice-static.a
 Scanning dependencies of target usrsctp-static
-[ 14%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_auth.c.o
+[ 12%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_auth.c.o
 [ 14%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_asconf.c.o
-[ 17%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_callout.c.o
-[ 17%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_indata.c.o
-[ 17%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_bsd_addr.c.o
+[ 14%] Built target juice-static
+[ 16%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_bsd_addr.c.o
 [ 17%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_cc_functions.c.o
-[ 19%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_input.c.o
-[ 21%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_output.c.o
-[ 23%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_crc32.c.o
-[ 23%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_pcb.c.o
+[ 17%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_callout.c.o
+[ 19%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_output.c.o
+[ 19%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_indata.c.o
+[ 19%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_pcb.c.o
+[ 21%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_crc32.c.o
+[ 23%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_input.c.o
 [ 25%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_peeloff.c.o
-[ 25%] Built target juice-static
+[ 26%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_sha1.c.o
 cc1: error: -Werror=format-truncation: no option -Wformat-truncation
 cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
 cc1: all warnings being treated as errors
-cc1: error: -Werror=format-truncation: no option -Wformat-truncation
-cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
-cc1: all warnings being treated as errors
-cc1: error: -Werror=format-truncation: no option -Wformat-truncation
-cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
-cc1: all warnings being treated as errors
-deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:120: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_callout.c.o' failed
-make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_callout.c.o] Error 1
+deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:107: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_bsd_addr.c.o' failed
+make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_bsd_addr.c.o] Error 1
 make[2]: *** Waiting for unfinished jobs....
+cc1: error: -Werror=format-truncation: no option -Wformat-truncation
+cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
+cc1: all warnings being treated as errors
 deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:94: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_auth.c.o' failed
 make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_auth.c.o] Error 1
+cc1: error: -Werror=format-truncation: no option -Wformat-truncation
+cc1: error: -Werror=format-truncation: no option -Wformat-truncation
+cc1: error: -Werror=format-truncation: no option -Wformat-truncation
+cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
+cc1: all warnings being treated as errors
+cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
+cc1: all warnings being treated as errors
+cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
+cc1: all warnings being treated as errors
+deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:81: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_asconf.c.o' failed
+make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_asconf.c.o] Error 1
+deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:120: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_callout.c.o' failed
+make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_callout.c.o] Error 1
 deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:133: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_cc_functions.c.o' failed
 make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_cc_functions.c.o] Error 1
 cc1: error: -Werror=format-truncation: no option -Wformat-truncation
-cc1: error: -Werror=format-truncation: no option -Wformat-truncation
-cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
-cc1: all warnings being treated as errors
 cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
 cc1: all warnings being treated as errors
 cc1: error: -Werror=format-truncation: no option -Wformat-truncation
-deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:107: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_bsd_addr.c.o' failed
-make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_bsd_addr.c.o] Error 1
-cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
-cc1: all warnings being treated as errors
 cc1: error: -Werror=format-truncation: no option -Wformat-truncation
-deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:185: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_output.c.o' failed
-make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_output.c.o] Error 1
-cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
-cc1: all warnings being treated as errors
-deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:172: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_input.c.o' failed
-make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_input.c.o] Error 1
-deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:81: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_asconf.c.o' failed
-make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_asconf.c.o] Error 1
-cc1: error: -Werror=format-truncation: no option -Wformat-truncation
-cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
-cc1: all warnings being treated as errors
-[ 26%] Building C object deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_sha1.c.o
 deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:146: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_crc32.c.o' failed
 make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_crc32.c.o] Error 1
-cc1: error: -Werror=format-truncation: no option -Wformat-truncation
 cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
 cc1: all warnings being treated as errors
-deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:159: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_indata.c.o' failed
-make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_indata.c.o] Error 1
-cc1: error: -Werror=format-truncation: no option -Wformat-truncation
-cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
-cc1: all warnings being treated as errors
-deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:198: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_pcb.c.o' failed
-make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_pcb.c.o] Error 1
-cc1: error: -Werror=format-truncation: no option -Wformat-truncation
 cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
 cc1: all warnings being treated as errors
 deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:211: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_peeloff.c.o' failed
 make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_peeloff.c.o] Error 1
 cc1: error: -Werror=format-truncation: no option -Wformat-truncation
+deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:159: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_indata.c.o' failed
+make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_indata.c.o] Error 1
+cc1: error: -Werror=format-truncation: no option -Wformat-truncation
+cc1: error: -Werror=format-truncation: no option -Wformat-truncation
 cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
 cc1: all warnings being treated as errors
+cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
+cc1: all warnings being treated as errors
+cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
+cc1: all warnings being treated as errors
+cc1: error: -Werror=format-truncation: no option -Wformat-truncation
+cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
+cc1: all warnings being treated as errors
+deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:185: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_output.c.o' failed
+make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_output.c.o] Error 1
+deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:198: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_pcb.c.o' failed
+make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_pcb.c.o] Error 1
+deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:172: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_input.c.o' failed
+make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_input.c.o] Error 1
 deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/build.make:224: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_sha1.c.o' failed
 make[2]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/netinet/sctp_sha1.c.o] Error 1
 CMakeFiles/Makefile2:453: recipe for target 'deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/all' failed
 make[1]: *** [deps/usrsctp/usrsctplib/CMakeFiles/usrsctp-static.dir/all] Error 2
 Makefile:148: recipe for target 'all' failed
 make: *** [all] Error 2 [AssertionError]
-```
-
-Looks like the current problem is:
-
-```
-cc1: error: -Werror=format-truncation: no option -Wformat-truncation
-cc1: error: unrecognized command line option '-Wno-address-of-packed-member' [-Werror]
 ```
 
 whatever that means. Searching...
