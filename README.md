@@ -22,4 +22,4 @@ So I defined [webrtc.nimble](https://github.com/TensorTom/nim-webrtc/blob/main/w
 nim c -d:rtcGit -d:rtcStatic src/webrtc.nim
 ```
 
-but it doesn't work. See Issue #1
+but it doesn't work. See [Issue #1](https://github.com/TensorTom/nim-webrtc/issues/1)
